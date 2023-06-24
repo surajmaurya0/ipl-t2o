@@ -1,23 +1,41 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
 import logo from '../../assest/logo/ipl-logo.png'
 import './navbarStyle.css'
-import { menuState } from '../../recoil/menuRecoil'
-import { useRecoilState } from 'recoil'
+import { logInMenu, menuState } from '../../recoil/menuRecoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
+import { logInState } from '../../recoil/logInDataRecoil'
+import { Link, useNavigate } from 'react-router-dom'
 const Navbar = () => {
     const [menu, setMenu] = useRecoilState(menuState)
-    const [logInModal, setLogInModal] = useState()
-    const[logInData,setLogInData] = useState({
-        email:'',
-        password:''
+    const [logInModal, setLogInModal] = useRecoilState(logInMenu)
+    const [errorHandle, setErrorHandle] = useState(false)
+    const getUserData = useRecoilValue(logInState)
+    const navigate = useNavigate()
+    const [logInData, setLogInData] = useState({
+        email: '',
+        password: ''
     })
+
+    const logInFunc = () => {
+        const validateUser = logInData.password == getUserData.password && logInData.email == getUserData.email
+        if (validateUser) {
+            localStorage.setItem('logInUser', validateUser)
+            setErrorHandle(false)
+            window.location.reload()
+        } else {
+            setErrorHandle(true)
+        }
+
+    }
+    const userLogInOrNot = JSON.parse(localStorage.getItem("logInUser"))
+    console.log(userLogInOrNot)
     return (
         <>
             <nav class="navbar is-transparent">
                 <div class="navbar-brand">
-                    <a class="navbar-item" href="https://bulma.io">
+                    <Link class="navbar-item" to='/'>
                         <img src={logo} alt="ipl-t20" width="112" height="28" />
-                    </a>
+                    </Link>
                     <div class="navbar-burger" onClick={() => setMenu(!menu)}>
                         <span></span>
                         <span></span>
@@ -34,7 +52,15 @@ const Navbar = () => {
                                 <i class="fa-solid fa-magnifying-glass" style={{ marginLeft: 'auto' }}></i>
                             </div>
                             <div className="buttons">
-                                <button className="button is-link btn" onClick={()=> setLogInModal('is-active')}><strong>Log in</strong></button>
+                                {
+                                    userLogInOrNot ?
+                                    <>
+                                        <button className="button is-link btn column_custom" onClick={() => navigate('/create-new-team')}><strong>Create Team</strong></button>
+                                        <button className="button is-danger btn column_custom" onClick={() => localStorage.setItem("logInUser",false)}><strong>Log Out</strong></button>
+                                    </>
+                                        :
+                                        <button className="button is-link btn column_custom" onClick={() => setLogInModal('is-active')}><strong>Log in</strong></button>
+                                }
 
                             </div>
                         </div>
@@ -46,26 +72,28 @@ const Navbar = () => {
                 <div className="modal-card">
                     <header className="modal-card-head">
                         <p className="modal-card-title">Log In</p>
-                        <button className="delete" aria-label="close" onClick={()=> setLogInModal('')}></button>
+                        <button className="delete" aria-label="close" onClick={() => setLogInModal('')}></button>
                     </header>
                     <section className="modal-card-body">
-                    <div className="card-content">
-                  <div className="columns" style={{display:'block'}}>
-                    <div className="column is-fullwidth">
-                      <input type="text" className="input" placeholder='Enter Email'  value={logInData.email}  onChange={(e)=> setLogInData({...logInData,email:e.target.value})}/>
-                    </div>
-                    
-                    <div className="column is-fullwidth">
-                      <input type="password" className="input" placeholder='Enter Password'  value={logInData.password} onChange={(e)=> setLogInData({...logInData,password:e.target.value})} />
-                    </div>
+                        <div className="card-content">
+                            <div className="columns" style={{ display: 'block' }}>
+                                {errorHandle && <h3 style={{ color: 'red' }}>Please check Your Email And Password!!!</h3>}
+                                <div className="column is-fullwidth">
+                                    <input type="text" className="input" placeholder='Enter Email' value={logInData.email} onChange={(e) => setLogInData({ ...logInData, email: e.target.value })} />
+                                </div>
 
-                    </div>
-                    </div>
+                                <div className="column is-fullwidth">
+                                    <input type="password" className="input" placeholder='Enter Password' value={logInData.password} onChange={(e) => setLogInData({ ...logInData, password: e.target.value })} />
+                                </div>
+
+                            </div>
+                        </div>
                     </section>
                     <footer className="modal-card-foot">
                         <div className="buttons">
-                            <Link className="button is-link btn"><strong>Log in</strong></Link>
-                        <button className="button" onClick={()=> setLogInModal('')}>Cancel</button>
+
+                            <button className="button is-link btn column_custom" onClick={() => logInFunc()} ><strong>Log in</strong></button>
+                            <button className="button column_custom" onClick={() => setLogInModal('')}>Cancel</button>
                         </div>
                     </footer>
                 </div>
