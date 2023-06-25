@@ -22,3 +22,6 @@
     display: flex;
     justify-content: center;
 }
+.picture-player:hover{
+    transform: scale(1.08); 
+}

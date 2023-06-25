@@ -1,82 +1,40 @@
-const data = {
-    csk: {
-        championships: [2010, 2011, 2018, 2021],
-        name: "Chennai Super Kings",
-        teamCaptain: "MS Dhoni",
-        teamCoach: "Stephen Fleming",
-        teamCode: "csk",
-        teamLogo: "/static/media/csk.ccfd44d6.png",
-        themeEndColor: "#DFA925",
-        themeStartColor: "#F0D513"
-    },
-    dc: {
-        championships: [],
-        name: "Delhi Capitals",
-        teamCaptain: "Rishabh Pant",
-        teamCoach: "Ricky Ponting",
-        teamCode: "dc",
-        teamLogo: "/static/media/dc.451d6286.png",
-        themeEndColor: "#B9241A",
-        themeStartColor: "#DCB52F"
-    },
-    kkr: {
-        championships: [2012, 2014],
-        name: "Kolkata Knight Riders",
-        teamCaptain: "Eoin Morgan",
-        teamCoach: "Brendon McCullum",
-        teamCode: "kkr",
-        teamLogo: "/static/media/kkr.1b584773.png",
-        themeEndColor: "#301857",
-        themeStartColor: "#6F45AC"
-    },
-    kxp: {
-        championships: [],
-        name: "Kings Eleven Punjab",
-        teamCaptain: "KL Rahul",
-        teamCoach: "Anil Kumble",
-        teamCode: "kxp",
-        teamLogo: "/static/media/kxp.bcaa916c.png",
-        themeEndColor: "#F64749",
-        themeStartColor: "#B31619"
-    },
-    mi: {
-        championships: [2013, 2015, 2017, 2019, 2020],
-        name: "Mumbai Indians",
-        teamCaptain: "Rohit Sharma",
-        teamCoach: "Mahela Jayawardene",
-        teamCode: "mi",
-        teamLogo: "/static/media/mi.7134fbda.png",
-        themeEndColor: "#0764AB",
-        themeStartColor: "#10D6D5"
-    },
-    rcb: {
-        championships: [],
-        name: "Royal Challengers Bangalore",
-        teamCaptain: "Virat Kohli",
-        teamCoach: "Simon Katich",
-        teamCode: "rcb",
-        teamLogo: "/static/media/rcb.52a7d9ab.png",
-        themeEndColor: "#B98208",
-        themeStartColor: "#E5BF65"
-    },
-    rr: {
-        championships: [2008],
-        name: "Rajasthan Royals",
-        teamCaptain: "Sanju Samson",
-        teamCoach: "Andrew McDonald",
-        teamCode: "rr",
-        teamLogo: "/static/media/rr.3078246d.png",
-        themeEndColor: "#163B97",
-        themeStartColor: "#315DC9"
-    },
-    srh: {
-        championships: [2016],
-        name: "Sunrisers Hyderabad",
-        teamCaptain: "Kane Williamson",
-        teamCoach: "Trevor Bayliss",
-        teamCode: "srh",
-        teamLogo: "/static/media/srh.deabb809.png",
-        themeEndColor: "#F37107",
-        themeStartColor: "#EFBC44"
-    }
-}
+"https://i.ibb.co/s15dtTm/1749.webp" alt="1749"
+"https://i.ibb.co/ngMVRRZ/509.webp" alt="509"
+"https://i.ibb.co/zGSHJGt/1594.webp" alt="1594"
+"https://i.ibb.co/smTT06M/836.png" alt="836"
+"https://i.ibb.co/Dg8j82p/258.webp" alt="258"
+"https://i.ibb.co/tcrG67y/41.webp" alt="41"
+"https://i.ibb.co/KLzrF61/1563.webp" alt="1563"
+"https://i.ibb.co/cgfMwQ0/1664.webp" alt="1664"
+"https://i.ibb.co/K788wRn/5433.webp" alt="5433"
+"https://i.ibb.co/0fqxhM6/2972.webp" alt="2972"
+"https://i.ibb.co/C5WQQbf/5430.webp" alt="5430"
+"https://i.ibb.co/WcbmxjW/111.webp" alt="111"
+"https://i.ibb.co/Wvdxd9z/282.webp" alt="282"
+"https://i.ibb.co/9yfGMQ1/233.png" alt="233"
+"https://i.ibb.co/brH9rbT/164.webp" alt="164"
+"https://i.ibb.co/GnqWNt1/5443.webp" alt="5443"
+"https://i.ibb.co/b5v5w3K/25-1.webp" alt="25-1"
+"https://i.ibb.co/rdsmY4h/25.webp" alt="25"
+"https://i.ibb.co/SnM6Mkc/24.webp" alt="24"
+"https://i.ibb.co/fYkvBV2/9.webp" alt="9"
+"https://i.ibb.co/c3535M6/1.webp" alt="1"
+"https://i.ibb.co/cC2Rfvw/2740.webp" alt="2740"
+"https://i.ibb.co/dmyyNx1/210.webp" alt="210"
+"https://i.ibb.co/164SZnQ/1124.webp" alt="1124"
+"https://i.ibb.co/sbL5qhs/834.webp" alt="834"
+"https://i.ibb.co/ykcDrc9/107.webp" alt="107"
+"https://i.ibb.co/5jRvJPM/2885.webp" alt="2885"
+"https://i.ibb.co/18tGsLP/1075.webp" alt="1075"
+"https://i.ibb.co/MkTj8cX/116.webp" alt="116"
+"https://i.ibb.co/v346XTP/506.webp" alt="506"
+"https://i.ibb.co/2Y4Ng58/440.webp" alt="440"
+"https://i.ibb.co/gTYMCS3/94.webp" alt="94"
+"https://i.ibb.co/4VnHJjJ/4698.webp" alt="4698"
+"https://i.ibb.co/BsJ0BG5/1703.webp" alt="1703"
+"https://i.ibb.co/BP9hCyz/158.webp" alt="158"
+"https://i.ibb.co/xCB75cF/Dinesh-Karthik-fde9080f.png" alt="Dinesh-Karthik-fde9080f"
+"https://i.ibb.co/yyT50j9/Andre-Russell-2068dce5.png" alt="Andre-Russell-2068dce5"
+"https://i.ibb.co/QKxykxP/Shivam-Mavi-9c3cf3a5.png" alt="Shivam-Mavi-9c3cf3a5"
+"https://i.ibb.co/Km0mGC6/Sunil-Narine-23633ab1.png" alt="Sunil-Narine-23633ab1"
+"https://i.ibb.co/fCHqSL5/Eoin-Morgan-ce08ed0c.png" alt="Eoin-Morgan-ce08ed0c"

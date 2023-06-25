@@ -5,10 +5,12 @@ import { logInMenu, menuState } from '../../recoil/menuRecoil'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { logInState } from '../../recoil/logInDataRecoil'
 import { Link, useNavigate } from 'react-router-dom'
+import { searchDataText } from '../../recoil/searchRecoil'
 const Navbar = () => {
     const [menu, setMenu] = useRecoilState(menuState)
     const [logInModal, setLogInModal] = useRecoilState(logInMenu)
     const [errorHandle, setErrorHandle] = useState(false)
+    const [searchText,setSearchText]= useRecoilState(searchDataText)
     const getUserData = useRecoilValue(logInState)
     const navigate = useNavigate()
     const [logInData, setLogInData] = useState({
@@ -28,7 +30,10 @@ const Navbar = () => {
 
     }
     const userLogInOrNot = JSON.parse(localStorage.getItem("logInUser"))
-    console.log(userLogInOrNot)
+   const searchFunc = ()=>{
+    navigate(`/search-player/${searchText}`)
+   }
+
     return (
         <>
             <nav class="navbar is-transparent">
@@ -48,8 +53,8 @@ const Navbar = () => {
                     <div class="navbar-end">
                         <div className="navbar-item">
                             <div className="search">
-                                <input class="input-search" type="text" placeholder="Search Player" />
-                                <i class="fa-solid fa-magnifying-glass" style={{ marginLeft: 'auto' }}></i>
+                                <input class="input-search" type="text" placeholder="Search Player" onChange={(e)=> setSearchText(e.target.value)} value={searchText} />
+                                <i class="fa-solid fa-magnifying-glass" onClick={()=> searchFunc()}  style={{ marginLeft: 'auto' }}></i>
                             </div>
                             <div className="buttons">
                                 {
