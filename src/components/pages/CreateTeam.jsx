@@ -78,9 +78,14 @@ const CreateTeam = () => {
       return oldData.teamCode === newData.teamCode;
     });
   });
-  
-  console.log("differentData",differentData);
-  
+
+  const deleteFunc = () => {
+    localStorage.removeItem("teamData")
+    navigate('/')
+    localStorage.setItem("teamData", JSON.stringify(oldTeamArray))
+  }
+  console.log("differentData", differentData);
+
   return (
     <div className="has-background">
       <div className="container">
@@ -211,38 +216,41 @@ const CreateTeam = () => {
                 </div>
               </div>
               <div className="card" style={{ marginTop: '10px' }}>
-                <div className="card-header">
+                <div className="card-header" >
                   <p className="card-header-title is-size-5">Your Added Team</p>
-                 </div> 
-                  <div className="card box">
-                    <div className="card-content card-content_custom">
-                      <div className="columns is-multiline">
+                </div>
+                <div className="card box">
+                  <div className="card-content card-content_custom">
+                    <div className="columns is-multiline">
 
-                        {differentData.length ?  differentData.map((player) => {
-                          const { championships, name, teamCaptain, teamCoach, teamCode, teamLogo, themeEndColor, themeStartColor
-                          } = player
-                          return (
-                            <>
-                              <div className="column is-3 column_custom" style={{ padding: '0' }}>
-                                <div className="box" style={{ backgroundImage: `linear-gradient(45deg, ${themeStartColor}, ${themeEndColor})` }}>
-                                  <figure class="image picture">
-                                    <img src={teamLogo} alt={name} style={{ height: '200px' }} />
-                                  </figure>
-                                </div>
+                      {differentData.length ? differentData.map((player) => {
+                        const { championships, name, teamCaptain, teamCoach, teamCode, teamLogo, themeEndColor, themeStartColor
+                        } = player
+                        return (
+                          <>
+                            <div className="column is-3 column_custom" style={{ padding: '0' }}>
+                              <div className="box" style={{ backgroundImage: `linear-gradient(45deg, ${themeStartColor}, ${themeEndColor})` }}>
+                                <figure class="image picture">
+                                  <img src={teamLogo} alt={name} style={{ height: '200px' }} />
+                                </figure>
                               </div>
-                              <div className="column is-9 ">
-                                <p className="is-size-3 "><strong>{name}</strong></p>
-                                <p className="is-size-6 teamStyle"><strong>Championships:</strong>{championships.map((champ) => <span>{champ},</span>)}</p>
-                                <p className="is-size-6 teamStyle"> <strong>Coach:</strong>{teamCoach}</p>
-                                <p className="is-size-6 teamStyle"><strong>Captain:</strong>{teamCaptain}</p>
-                              </div>
+                            </div>
+                            <div className="column is-9 ">
+                              <p className="is-size-3 "><strong>{name}</strong></p>
+                              <p className="is-size-6 teamStyle"><strong>Championships:</strong>{championships.map((champ) => <span>{champ},</span>)}</p>
+                              <p className="is-size-6 teamStyle"> <strong>Coach:</strong>{teamCoach}</p>
+                              <p className="is-size-6 teamStyle"><strong>Captain:</strong>{teamCaptain}</p>
+                            </div>
 
-                            </>
-                          )
-                        }) :<p className="card-header-title is-size-5">No Team Added</p>
-                        }
-                      
-                    
+                          </>
+                        )
+                      }) : <p className="card-header-title is-size-5">No Team Added</p>
+                      }
+                      {
+                        differentData.length ?
+                          <button className='button is-danger ' style={{ margin: '10px' }} onClick={() => deleteFunc()} >Delete All Created Team</button> : ""
+                      }
+
                     </div>
                   </div>
                 </div>
