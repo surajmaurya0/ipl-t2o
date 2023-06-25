@@ -24,10 +24,10 @@ const SearchPage = () => {
             <div className="columns is-multiline">
               {
                 searchResult.length ? searchResult.map((player) => {
-                  const {playerId, playerName,playerImage,playerRole,playerTeam,totalWickets,totalRuns,totalMatches,themeEndColor,themeStartColor} = player
+                  const {playerId, playerName,playerImage,totalWickets,totalRuns,totalMatches,themeEndColor,themeStartColor} = player
                   return (
                     <>
-                      <div className="column is-3 column_custom picture-player" key="playerId">
+                      <div className="column is-3 column_custom picture-player" key={playerId}>
                         <div className="box"
                          style={{ backgroundImage: `linear-gradient(45deg, ${themeStartColor}, ${themeEndColor})`,padding:'0'}}
                         >

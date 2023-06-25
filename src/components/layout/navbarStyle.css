@@ -19,3 +19,10 @@
     margin-left: 15px;
     padding: 15px;
 }
+.teamStyle{
+    margin-top: 15px;
+    word-wrap: break-word;
+}
+.card-content{
+    padding: 0% !important;
+}

@@ -8,6 +8,7 @@ import {useRecoilValue} from 'recoil'
 import CreateTeam from './components/pages/CreateTeam'
 import { playerDataState } from './recoil/playerDataRecoil'
 import SearchPage from './components/pages/SearchPage'
+import TeamPage from './components/pages/TeamPage'
 const App = () => {
   const teamData =  useRecoilValue(teamDataState)
   const playerData =  useRecoilValue(playerDataState)
@@ -22,6 +23,7 @@ const App = () => {
     <Route path='/' element={<Home/>}/>
     <Route path='/create-new-team' element={<CreateTeam/>} />
     <Route path='/search-player/:name' element={<SearchPage/>} />
+    <Route path='/team-page/:team' element={<TeamPage/>} />
     <Route path='*' element={<h3>Page Not Found</h3>} />
    </Routes>
    </>
