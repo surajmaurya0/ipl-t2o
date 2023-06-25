@@ -18,7 +18,7 @@ const Home = () => {
                     <div className="columns is-multiline">
 
                         {
-                            teamData && teamData.map((team) => {
+                            teamData && teamData.reverse().map((team) => {
                                 const { name, themeEndColor, themeStartColor, teamLogo,
                                     teamCode
 

@@ -16,12 +16,15 @@ const App = () => {
     const teamDataINArray = JSON.stringify(Object.values(teamData))
     localStorage.setItem("teamData",teamDataINArray)
     localStorage.setItem("playerData",playerDataInArray)
+    const logInStatus = JSON.parse(localStorage.getItem("logInUser"))
+    console.log(logInStatus)
   return (
    <>
    <Navbar/>
    <Routes>
     <Route path='/' element={<Home/>}/>
-    <Route path='/create-new-team' element={<CreateTeam/>} />
+    
+    <Route path='/create-new-team' element={logInStatus? <CreateTeam/> : <Home/>} />
     <Route path='/search-player/:name' element={<SearchPage/>} />
     <Route path='/team-page/:team' element={<TeamPage/>} />
     <Route path='*' element={<h3>Page Not Found</h3>} />
