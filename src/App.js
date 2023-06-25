@@ -9,6 +9,7 @@ import CreateTeam from './components/pages/CreateTeam'
 import { playerDataState } from './recoil/playerDataRecoil'
 import SearchPage from './components/pages/SearchPage'
 import TeamPage from './components/pages/TeamPage'
+import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   const teamData =  useRecoilValue(teamDataState)
   const playerData =  useRecoilValue(playerDataState)

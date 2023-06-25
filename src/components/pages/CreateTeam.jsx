@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import { menuState } from '../../recoil/menuRecoil';
 import { useRecoilValue } from 'recoil';
 import SearchMenu from '../layout/SearchMenu';
+import { toast } from 'react-toastify';
+import { teamDataState } from '../../recoil/teamDataRecoil';
 
-const teamData = JSON.parse(localStorage.getItem("teamData"))
 const CreateTeam = () => {
+  const teamData = JSON.parse(localStorage.getItem("teamData"))
   const [newTeam, setNewTeam] = useState({
     championships: [],
     name: '',
@@ -56,24 +58,34 @@ const CreateTeam = () => {
       newTeam.championships.length > 0
     ) {
       console.log(newTeam);
-      let newTeamData = [...teamData,newTeam]
+      let newTeamData = [...teamData, newTeam]
       newTeamData = JSON.stringify(newTeamData)
 
-      localStorage.setItem("teamData",newTeamData)
+      localStorage.setItem("teamData", newTeamData)
       // console.log(newTeamData)
+      alert('New Team is Added')
       navigate('/')
 
-      
+
     } else {
       console.log('Form validation failed.');
     }
   };
-
+  const oldTeam = useRecoilValue(teamDataState)
+  const oldTeamArray = Object.values(oldTeam)
+  const differentData = teamData.filter((newData) => {
+    return !oldTeamArray.some((oldData) => {
+      return oldData.teamCode === newData.teamCode;
+    });
+  });
+  
+  console.log("differentData",differentData);
+  
   return (
     <div className="has-background">
       <div className="container">
         <div className="section">
-        {menu && <SearchMenu />}
+          {menu && <SearchMenu />}
           <div className="columns is-multiline is-flex is-justify-content-center">
             <div className="column is-8">
               <div className="card">
@@ -185,7 +197,7 @@ const CreateTeam = () => {
                           placeholder="Enter Championship year"
                           value={newTeam.championships}
                           required
-                          onChange={(e) => setNewTeam({ ...newTeam, championships: e.target.value })}
+                          onChange={(e) => setNewTeam({ ...newTeam, championships: [e.target.value] })}
                         />
                         {showError('championships') && (
                           <p className="help is-danger">Championship Years are required.</p>
@@ -196,6 +208,43 @@ const CreateTeam = () => {
                       </button>
                     </div>
                   </form>
+                </div>
+              </div>
+              <div className="card" style={{ marginTop: '10px' }}>
+                <div className="card-header">
+                  <p className="card-header-title is-size-5">Your Added Team</p>
+                 </div> 
+                  <div className="card box">
+                    <div className="card-content card-content_custom">
+                      <div className="columns is-multiline">
+
+                        {differentData.length ?  differentData.map((player) => {
+                          const { championships, name, teamCaptain, teamCoach, teamCode, teamLogo, themeEndColor, themeStartColor
+                          } = player
+                          return (
+                            <>
+                              <div className="column is-3 column_custom" style={{ padding: '0' }}>
+                                <div className="box" style={{ backgroundImage: `linear-gradient(45deg, ${themeStartColor}, ${themeEndColor})` }}>
+                                  <figure class="image picture">
+                                    <img src={teamLogo} alt={name} style={{ height: '200px' }} />
+                                  </figure>
+                                </div>
+                              </div>
+                              <div className="column is-9 ">
+                                <p className="is-size-3 "><strong>{name}</strong></p>
+                                <p className="is-size-6 teamStyle"><strong>Championships:</strong>{championships.map((champ) => <span>{champ},</span>)}</p>
+                                <p className="is-size-6 teamStyle"> <strong>Coach:</strong>{teamCoach}</p>
+                                <p className="is-size-6 teamStyle"><strong>Captain:</strong>{teamCaptain}</p>
+                              </div>
+
+                            </>
+                          )
+                        }) :<p className="card-header-title is-size-5">No Team Added</p>
+                        }
+                      
+                    
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

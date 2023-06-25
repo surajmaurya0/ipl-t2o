@@ -1,9 +1,9 @@
 .image img{
     height: 200px;
-    width: auto;
+    width: auto !important;
 }
 .image{
-    display: flex;
+    display: flex !important;
     justify-content: center;
 }
 .column_custom:hover{
