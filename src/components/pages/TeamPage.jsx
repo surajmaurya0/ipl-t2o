@@ -27,7 +27,7 @@ const TeamPage = () => {
                     </figure>
                   </div>
                 </div>
-                <div className="column is-9">
+                <div className="column is-9 box ">
                   <p className="is-size-2 "><strong>{name}</strong></p>
                   <p className="is-size-5 teamStyle"><strong>Championships:</strong>{championships.map((champ) => <span>{champ},</span>)}</p>
                   <p className="is-size-5 teamStyle"> <strong>Coach:</strong>{teamCoach}</p>
