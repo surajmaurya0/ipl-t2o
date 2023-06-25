@@ -12,7 +12,7 @@ export const searchResultState = selector({
         const searchText = get(searchDataText)
         const playerData = get(playerDataState)
         let searchResult = []
-        searchResult = playerData.filter((player) => player.playerName.toLowerCase().includes(searchText))
+        searchResult = playerData.filter((player) => player.playerName.toLowerCase().includes(searchText.toLowerCase()))
         return searchResult
     }
 })

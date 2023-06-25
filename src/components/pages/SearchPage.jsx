@@ -9,18 +9,18 @@ const SearchPage = () => {
   const params = useParams()
   const setSearchPlayerText = useSetRecoilState(searchDataText)
   const searchResult = useRecoilValue(searchResultState)
-  setSearchPlayerText(params.name)
+  // setSearchPlayerText(params.name)
   const menu = useRecoilValue(menuState)
   return (
     <>
       <div className="has-background">
         <div className="container">
           <div className="section">
-            <p className="is-size-4">
+            {menu && <SearchMenu/>}
+            <p className="is-size-5" style={{marginBottom:'15px'}}>
               <strong>Search results for:{params.name} </strong>
             
             </p>
-            {menu && <SearchMenu/>}
             <div className="columns is-multiline">
               {
                 searchResult.length ? searchResult.map((player) => {
@@ -60,7 +60,7 @@ const SearchPage = () => {
                     </>
                   )
                 }):
-                <div><span className='is-size-4'>Player Not found</span></div>
+                <div style={{margin:'auto',width:'100%'}}><span className='is-size-4'>Player Not found</span></div>
 
               }
             </div>

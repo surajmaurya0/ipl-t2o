@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { logInMenu, menuState } from '../../recoil/menuRecoil'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { useNavigate } from 'react-router-dom'
@@ -7,7 +7,8 @@ import { searchDataText } from '../../recoil/searchRecoil'
 const SearchMenu = () => {
     const setMenu = useSetRecoilState(menuState)
     const navigate = useNavigate()
-    const [searchText, setSearchText] = useRecoilState(searchDataText)
+    const setSearchText = useSetRecoilState(searchDataText)
+    const [searchData,setSearchData] = useState()
     const setLogInModal = useSetRecoilState(logInMenu)
     const userLogInOrNot = JSON.parse(localStorage.getItem("logInUser"))
     const logOutFunc = () => {
@@ -15,14 +16,15 @@ const SearchMenu = () => {
         window.location.reload()
     }
     const searchFunc = () => {
-        navigate(`/search-player/${searchText}`)
+        navigate(`/search-player/${searchData}`)
+        setSearchText(searchData)
         setMenu(false)
     }
     return (
         <div className="columns container">
             <div className="box" style={{ width: '-webkit-fill-available' }}>
                 <div className="search-mobile box">
-                    <input class="input-search" type="text" placeholder="Search Player" value={searchText} onChange={(e) => setSearchText(e.target.value)} />
+                    <input class="input-search" type="text" placeholder="Search Player" value={searchData} onChange={(e) => setSearchData(e.target.value)} />
                     <i class="fa-solid fa-magnifying-glass" style={{ marginLeft: 'auto' }} onClick={() => searchFunc()}></i>
                 </div>
                 <div className="buttons-mobile">
