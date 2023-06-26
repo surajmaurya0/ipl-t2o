@@ -8,6 +8,7 @@ import { teamDataState } from '../../recoil/teamDataRecoil';
 
 const CreateTeam = () => {
   const teamData = JSON.parse(localStorage.getItem("teamData"))
+  const [errorTeam, setErrorTeam] = useState(false)
   const [newTeam, setNewTeam] = useState({
     championships: [],
     name: '',
@@ -45,30 +46,38 @@ const CreateTeam = () => {
   }, [formSubmitted]);
 
   const createNewTeam = (e) => {
+    const uniqueTeam = teamData.filter((team) => team.teamCode === newTeam.teamCode)
     e.preventDefault();
-    setFormSubmitted(true);
-    if (
-      newTeam.name &&
-      newTeam.teamCode &&
-      newTeam.teamLogo &&
-      newTeam.themeStartColor &&
-      newTeam.themeEndColor &&
-      newTeam.teamCoach &&
-      newTeam.teamCaptain &&
-      newTeam.championships.length > 0
-    ) {
-      console.log(newTeam);
-      let newTeamData = [...teamData, newTeam]
-      newTeamData = JSON.stringify(newTeamData)
-
-      localStorage.setItem("teamData", newTeamData)
-      // console.log(newTeamData)
-      alert('New Team is Added')
-      navigate('/')
-
+    if (uniqueTeam.length) {
+      setErrorTeam(true)
+      console.log(uniqueTeam)
 
     } else {
-      console.log('Form validation failed.');
+      setFormSubmitted(true);
+      if (
+        newTeam.name &&
+        newTeam.teamCode &&
+        newTeam.teamLogo &&
+        newTeam.themeStartColor &&
+        newTeam.themeEndColor &&
+        newTeam.teamCoach &&
+        newTeam.teamCaptain &&
+        newTeam.championships.length > 0
+      ) {
+        console.log(newTeam);
+        let newTeamData = [...teamData, newTeam]
+        newTeamData = JSON.stringify(newTeamData)
+
+        localStorage.setItem("teamData", newTeamData)
+        // console.log(newTeamData)
+        alert('New Team is Added')
+        navigate('/')
+
+
+      } else {
+        console.log('Form validation failed.');
+      }
+
     }
   };
   const oldTeam = useRecoilValue(teamDataState)
@@ -124,6 +133,7 @@ const CreateTeam = () => {
                           required
                           onChange={(e) => setNewTeam({ ...newTeam, teamCode: e.target.value })}
                         />
+                        {errorTeam && <span style={{ color: 'red' }}>team code should be unique</span>}
                         {showError('teamCode') && <p className="help is-danger">Team Code is required.</p>}
                       </div>
                       <div className="column is-full">
