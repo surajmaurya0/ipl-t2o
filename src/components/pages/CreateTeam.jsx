@@ -46,7 +46,7 @@ const CreateTeam = () => {
   }, [formSubmitted]);
 
   const createNewTeam = (e) => {
-    const uniqueTeam = teamData.filter((team) => team.teamCode === newTeam.teamCode.toLocaleLowerCase())
+    const uniqueTeam = teamData.filter((team) => team.teamCode.toLowerCase() === newTeam.teamCode.toLowerCase())
     e.preventDefault();
     if (uniqueTeam.length) {
       setErrorTeam(true)
